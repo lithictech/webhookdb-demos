@@ -1,0 +1,11 @@
+version: "3.4"
+
+services:
+  db:
+    image: "postgres:13"
+    ports:
+      - "18015:5432"
+    environment:
+      POSTGRES_USER: 'webhookdb_demo'
+      POSTGRES_PASSWORD: 'webhookdb_demo'
+      POSTGRES_DB: 'webhookdb_demo'
