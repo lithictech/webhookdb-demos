@@ -91,6 +91,10 @@ with your own application tables.
 
 See the `app-fdw-rb` folder for example code.
 
+Our examples do not use an ORM, but you can easily create a view-backed model
+in your ORM that points to thes remote tables.
+See the README for more details.
+
 The downside of this approach is that some analytics queries may be slower against
 a FDW than real tables. For analytics queries, you can still use a separate connection string.
 
@@ -99,6 +103,9 @@ a FDW than real tables. For analytics queries, you can still use a separate conn
 For Enterprise-level customers, we can use a database user you provision
 to write data directly into your database. For most query patterns, this does not provide much
 of a benefit over the other options, but it is available if needed.
+
+From an integration standpoint, the code looks very similar to `app-fdw-db`,
+but without the FDW part.
 
 ## Unit testing with WebhookDB
 
