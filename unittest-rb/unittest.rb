@@ -56,7 +56,8 @@ end
 #
 
 def alert_negative_balance
-  # this would be a good use case for using a FDW so a single query can be used
+  # This would be a good use case for using a FDW so a single query can be used.
+  # See app-fdw-rb for an example.
   DB[WHDB_STRIPE_CUSTOMERS].where { balance < 0 }.each do |stripe_cust|
     app_cust = DB[CUST_TBL].where(stripe_id: stripe_cust[:stripe_id]).first
     DB[ALERT_TBL].insert(

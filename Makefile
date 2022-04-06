@@ -1,5 +1,7 @@
 up:
 	docker-compose up -d
+down:
+	docker-compose down
 install:
 	bundle install
 psql:
