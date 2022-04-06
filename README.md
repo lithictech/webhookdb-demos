@@ -78,7 +78,7 @@ so may contain real data.
 The easiest route to integrate WebhookDB into your application is
 by creating a new connection to its database.
 
-See the `app-db-rb` folder for example code.
+See the [`app-db-rb`](https://github.com/lithictech/webhookdb-demos/tree/main/app-db-rb) folder for example code.
 
 The downside of this approach is that it requires a separate database connection,
 and cannot be used for `JOIN` since it is another DB.
@@ -89,11 +89,11 @@ If you are using WebhookDB for application data on your critical path/web reques
 we suggest using a Foreign Data Wrapper (FDW) so you can `JOIN` data in WebhookDB
 with your own application tables.
 
-See the `app-fdw-rb` folder for example code.
+See the [`app-fdw-rb`](https://github.com/lithictech/webhookdb-demos/tree/main/app-fdw-rb) folder for example code.
 
 Our examples do not use an ORM, but you can easily create a view-backed model
 in your ORM that points to thes remote tables.
-See the README for more details.
+See the [README](https://github.com/lithictech/webhookdb-demos/tree/main/app-fdw-rb#view-backed-orm-models) for more details.
 
 The downside of this approach is that some analytics queries may be slower against
 a FDW than real tables. For analytics queries, you can still use a separate connection string.
@@ -104,8 +104,8 @@ For Enterprise-level customers, we can use a database user you provision
 to write data directly into your database. For most query patterns, this does not provide much
 of a benefit over the other options, but it is available if needed.
 
-From an integration standpoint, the code looks very similar to `app-fdw-db`,
-but without the FDW part.
+From an integration standpoint, the code looks very similar to [`app-fdw-db`](https://github.com/lithictech/webhookdb-demos/tree/main/app-fdw-rb),
+but using whatever schema you want us to write into, rather than the FDW foreign schema.
 
 ## Unit testing with WebhookDB
 
@@ -116,4 +116,4 @@ Specifically, WebhookDB is much easier to test with when compared to API mocking
 instead, you can insert DB objects that are queried by your test,
 rather than dealing with HTTP mocks to endpoints.
 
-See the `unittest-rb` folder for example code. 
+See the [`unittest-rb`](https://github.com/lithictech/webhookdb-demos/tree/main/unittest-rb) folder for example code.

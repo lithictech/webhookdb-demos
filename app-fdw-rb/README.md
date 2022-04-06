@@ -68,9 +68,9 @@ If anything is not configured, the demo will error.
 
 To use view-backed models, you'll want to use a consistent, hard-coded table name
 rather than the auto-generated one we provide.
-You can run this:
+You can run this (using your own integration id, use `webhookdb integrations list` to see all):
 
-    webhookdb integrations rename svi_integrationid
+    webhookdb db rename-table svi_6i8987gxug15z0mbhi0dhwns0 --new-name=stripe_customers_v1
 
 And rename your integration to `stripe_customers` or whatever.
 Then in your ORM, you would have something like this in Ruby:
@@ -98,5 +98,5 @@ class StripeCustomer(Base):
 # Django
 class StripeCustomer(models.Model):
     class Meta:
-        db_table = u'"webhookdb_remote\".\"stripe_customers"'
+        db_table = '"webhookdb_remote\".\"stripe_customers"'
 ```

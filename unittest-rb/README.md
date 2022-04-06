@@ -10,7 +10,7 @@ From the repo root, run:
 
 You can unit test using any of the WebhookDB integration approaches-
 the details are basically the same. We will use the 'separate DB'
-integration (`app-db-rb`) for this example.
+integration via [`app-db-rb`](https://github.com/lithictech/webhookdb-demos/tree/main/app-db-rb) for this example.
 
 The basic idea is that we create tables in our test database,
 insert into those, and query against them.
@@ -18,7 +18,7 @@ Using the same database for all tests avoids complexity
 around multiple databases for testing,
 though of course you can do this if desired.
 
-To generate the table schema, run this from your WebhookDB terminal:
+To generate the table schema, run this from your [WebhookDB terminal](https://webhookdb.com/terminal/):
 
 ```
 rob@lithic.tech/rob_lithic_demo > webhookdb fixtures stripe_customer_v1
@@ -41,7 +41,9 @@ CREATE INDEX IF NOT EXISTS updated_idx ON stripe_customer_v1_fixture ("updated")
 ```
 
 You would take that output and run it as part of your migrations against your test database.
-For our demo, we've put the contents into a `.sql` file and run it before the test.
+For our demo, we've put the contents into
+a [`.sql`](https://github.com/lithictech/webhookdb-demos/blob/main/unittest-rb/stripe_customer_v1.schema.sql) file
+and run it before the test.
 
 Our example unit test checks that we create an alert for all customers
 who have a negative balance on their stripe customer. 
@@ -50,6 +52,8 @@ You can run the demo:
 
     WHDB_STRIPE_CUSTOMERS=stripe_customer_v1_fixture make demo-unittest-rb
 
-Note that in order to run the demo, we need the customers table configured,
-just like in production. But in this case, we point it at the fixtures table
-that was created by our sql.
+Note that in order to run the demo, we need the customers table configured.
+But in this case, we point it at the fixtures table that was created by our sql.
+Another option would be to rename our production table so it and the fixtured table
+have the same name- we follow this approach when integrating WebhookDB
+with an ORM, as [in this example](https://github.com/lithictech/webhookdb-demos/tree/main/app-fdw-rb#view-backed-orm-models).
